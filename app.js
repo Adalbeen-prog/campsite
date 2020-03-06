@@ -2,15 +2,12 @@ const express			= require("express"),
 	  app 				= express(),
 	  bodyParser 		= require("body-parser"),
 	  mongoose 			= require("mongoose"),
-	  Campground 		= require('./models/campground'),
-	  Comments			= require('./models/comment'),
 	  User 				= require('./models/user'),
 	  seedDB 			= require('./seeds'),
 	  passport 			= require('passport'),
 	  LocalStrategy		= require('passport-local'),
 	  methodOverride	= require('method-override'),
-	  flash				= require('connect-flash'),
-	  cloudinary		= require('cloudinary').v2;
+	  flash				= require('connect-flash');
 
 
 const dotenv = require('dotenv');
