@@ -1,0 +1,22 @@
+<%- include("./partials/header") %>
+
+
+<div class="container">
+	<div class="myForms">
+		<form method="POST" action="/login" class="text-center mt-5">
+			<h1 class="display-2">Login</h1>
+			<hr>
+			<div class="form-group">
+				<input class="form-control text-center" type="text" placeholder="username" name="username">
+			</div>
+			<div class="form-group">
+				<input class="form-control text-center" type="password" placeholder="password" name="password">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-md btn-success p-1">Login</button>
+				<a class="btn btn-md btn-secondary p-1" href="/campgrounds">Back</a>
+			</div>
+		</form>
+	</div>
+</div>
+<%- include("./partials/footer") %>

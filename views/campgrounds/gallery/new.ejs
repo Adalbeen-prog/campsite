@@ -1,0 +1,25 @@
+<%- include("../../partials/header") %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css">
+
+
+<div class="container-fluid">
+	<div class="mt-5">
+		<h1 class="display-4 text-center">Upload images into the gallery</h1>
+		
+		<div class="text-center p-5">
+				<form id="upload-widget" action="/campgrounds/<%= campground.id %>/gallery" method="POST" enctype="multipart/form-data" class="dropzone">
+					<div class="fallback">
+						<input name="file" type="file" multiple />
+					</div>
+				</form>
+				
+			<br>
+		<a class="btn btn-secondary btn-sm" href="/campgrounds/<%= campground.id %>">Back</a>
+		</div>
+		
+	</div>
+</div>
+
+
+<%- include("../../partials/footer") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone-amd-module.min.js"></script>

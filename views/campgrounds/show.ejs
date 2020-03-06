@@ -1,0 +1,156 @@
+<%- include("../partials/header") %>
+<div class="jumbotron jumbotron-fluid shadow" id="showImage" style="background-image: url('<%= campground.image %>');">
+    <div class="container text-center">
+        <h1 class="campgroundName display-4">
+            <%= campground.name %>
+        </h1>
+        <p class="campgroundLead" style="">
+            <%= campground.info %>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div id="campgroundsMenu" class="list-group">
+            <a class="ml-1 mr-1 mb-3 btn btn-md btn-outline-secondary" href="/campgrounds/">Back</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-1">Description</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-2">Gallery</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-3">Reviews</a>
+            <div id="map">
+
+            </div>
+        </div>
+
+    </div>
+    <!-- MAIN CONTENT	 -->
+    <div class="col-md-9">
+        <div>
+            <h4 class="pull-right">
+                <%= campground.price.value %>
+                <%= campground.price.currency %>/night</h4>
+            <h3 id="list-item-1">
+                <%= campground.name %>
+            </h3>
+            <div class="stars pull-right">
+                <% var roundedStars = Math.floor(totalStars); %>
+                <!--  if the total number of star is whole number, print stars -->
+                <% if((totalStars%1 == 0)){ %>
+                <% for(var i = 0; i < roundedStars; i++){ %>
+                <i class="fas fa-star"></i>
+                <% } %>
+                <!--  if not, round the number down, print that number and if the rest is between 0.7 and 0.35, print half star -->
+                <% } else { %>
+
+                <% for(var i = 0; i < roundedStars; i++){ %>
+                <i class="fas fa-star"></i>
+                <% } %>
+                <% var rest = totalStars - roundedStars %>
+                <% if (rest > 0.7){ %>
+                <i class="fas fa-star"></i>
+                <% } else if(rest >0.35) { %>
+                <i class="fas fa-star-half-alt"></i>
+                <% } %>
+                <% } %>
+            </div>
+            <span>
+                <em>Submited by
+                    <%= campground.author.username %>
+                </em>
+            </span>
+            <hr>
+            <p>
+                <%= campground.description %>
+            </p>
+            <% if(currentUser && campground.author.id.equals(currentUser.id)){ %>
+            <div class="formButtons">
+                <a href='/campgrounds/<%= campground._id %>/edit' class="btn btn-outline-warning">Edit</i>
+                </a>
+                <form class="deleteForm" action='/campgrounds/<%= campground._id %>?_method=DELETE' method="POST">
+                    <button class="btn btn-outline-danger">
+                        Delete
+                    </button>
+                </form>
+            </div>
+            <% }%>
+            <hr>
+            <!-- 	GALLERY		 -->
+            <div id="list-item-2" class="gallery">
+                <!-- 	Show button only if you are owner		 -->
+                <% if(currentUser && campground.author.id.equals(currentUser.id)) { %>
+                <a class="btn btn-outline-secondary pull-right"
+                    href="/campgrounds/<%= campground.id %>/gallery/new">Upload</a>
+                <% } %>
+                <h2 class="text-center">
+                    Gallery
+                    </h1>
+                    <div class="masonry">
+                        <% campground.images.forEach(function(img){ %>
+                        <div class="item">
+                            <a href="<%= img %>" data-toggle="lightbox" data-gallery="example-gallery"
+                                data-type="image">
+                                <img src="<%= img %>" class="img-fluid" width="250px" height="250px">
+                            </a>
+                        </div>
+                        <% }) %>
+                    </div>
+            </div>
+            <hr>
+            <!-- 	COMMENTS		 -->
+            <a class="btn btn-md btn-outline-primary pull-right"
+                href="/campgrounds/<%= campground._id %>/comments/new">Add review</a>
+            <h4 id="list-item-3">Reviews</h4>
+            <br>
+            <% campground.comments.forEach(function(comment){ %>
+            <div class="comment mb-3">
+                <strong>
+                    <%= comment.author.username %>
+                </strong>
+                <span class="pull-right">
+                    <%= comment.date %>
+                </span>
+                <div class="stars">
+                    <% for(var i = 0; i < comment.star; i++){ %>
+                    <i class="fas fa-star"></i>
+
+                    <% } %>
+                </div>
+
+                <p>
+                    <%= comment.text %>
+                </p>
+                <% if(currentUser && comment.author.id.equals(currentUser.id)) { %>
+                <div class="formButtons">
+                    <a href='/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit'
+                        class="btn btn-sm btn-outline-warning">Edit</i>
+                    </a>
+                    <form class="deleteForm"
+                        action='/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE'
+                        method="POST">
+                        <button class="btn btn-sm btn-outline-danger">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+                <% } %>
+            </div>
+            <hr class="style-two">
+            <% })  %>
+        </div>
+    </div>
+</div>
+
+<script>
+    mapboxgl.accessToken = '<%= process.env.MAPBOX_KEY %>';
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [<%= campground.location.lng %>, <%= campground.location.lat %>], // starting position [lng, lat]
+        zoom: 12 // starting zoom
+    });
+    var marker = new mapboxgl.Marker() // initialize a new marker
+        .setLngLat([<%= campground.location.lng %>, <%= campground.location.lat %>]) // Marker [lng, lat] coordinates
+        .addTo(map); // Add the marker to the map
+</script>
+
+<%- include("../partials/footer") %>

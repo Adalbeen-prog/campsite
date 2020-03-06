@@ -1,0 +1,185 @@
+/* Maps */
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+.hidden{
+	display: none;
+}
+
+#plusImage {
+	display: inline;
+	font-size: 30px;
+}
+
+.ui-menu {
+	background: white;
+}
+
+.ui-helper-hidden-accessible {
+	display: none;
+}
+#showImage {
+	/* background-image: url('<%= campground.image %>');  */
+	background-size: cover;
+    background-repeat: no-repeat; 
+	background-position: 50% 50%; 
+	color:white; 
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+#campgroundsMenu {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 15px;
+}
+
+#campgroundBody {
+	display: block;
+}
+
+
+
+.campgroundName{
+	text-shadow: 1px 1px #ff0000;
+}
+
+.campgroundLead{
+	text-shadow: 1px 1px #ff0000; 
+	background: rgba(0, 0, 0, 0.18); 
+	display: inline; 
+	padding: 5px;
+}
+
+.campgroundBody{
+	position: absolute;
+
+}
+
+.row{
+	width: 100%;
+}
+
+.pull-right{
+	float: right;
+}
+
+.bg-overlay {
+	background: rgba(155,155,170,0.5);
+}
+
+.landingHeader{
+	font-weight: 700;
+	color: white;
+}
+
+.deleteForm {
+	display: inline;
+}
+
+
+hr.style-two {
+    opacity: 0.5;
+}
+
+.stars {
+	color: #FFD700;
+	font-size: 25px;
+	
+}
+
+.alert {
+	border-radius: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.clear {
+    float: none;
+    clear: both;
+}
+
+.rating {
+	font-size: 50px;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    position: relative;
+}
+
+.rating > label {
+    display: inline;
+    position: relative;
+    /* width: 1.1em; */
+    cursor: pointer;
+    color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+    color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+    content: "\2605";
+    position: absolute;
+    color: #FFD700;
+}
+
+.myForms{
+	width: 50%; 
+	margin: 0 auto;
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+	.myForms{
+		width: 70%; 
+		margin: 0 auto;
+	}
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 800px) {
+	.myForms{
+		width: 80%; 
+		margin: 0 auto;
+	}
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 700px) {
+	.myForms{
+		width: 90%; 
+		margin: 0 auto;
+	}
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+	.myForms{
+		width: 100%; 
+		margin: 0 auto;
+	}
+}
+
+.masonry { /* Masonry container */
+  column-count: 4;
+  column-gap: 1em;
+}
+
+.item { /* Masonry bricks or child elements */
+  background-color: #eee;
+  display: inline-block;
+  margin: 0 0 1em;
+  width: 100%;
+}
+

@@ -1,0 +1,44 @@
+<%- include("../partials/header") %>
+
+<!-- <div id="bg">
+	
+</div> -->
+
+<div class="container">
+	<div class="mt-5">
+		<h1 class="display-2 text-center">Add review</h1>
+		<hr>
+		<div class="text-center p-1">
+			<div class="myForms">
+				<form action="/campgrounds/<%= campground._id %>/comments" method="POST">
+					<div class="form-group">
+						<textarea class="form-control text-center" type="text" placeholder="Text" name="comment[text]"></textarea>
+					</div>
+					<div class="rating mb-2">
+						<input id="star5" name="comment[star]" type="radio" value="5" class="radio-btn hide" />
+						<label for="star5">☆</label>
+						<input id="star4" name="comment[star]" type="radio" value="4" class="radio-btn hide" />
+						<label for="star4">☆</label>
+						<input id="star3" name="comment[star]" type="radio" value="3" class="radio-btn hide" />
+						<label for="star3">☆</label>
+						<input id="star2" name="comment[star]" type="radio" value="2" class="radio-btn hide" />
+						<label for="star2">☆</label>
+						<input id="star1" name="comment[star]" type="radio" value="1" class="radio-btn hide" />
+						<label for="star1">☆</label>
+						<div class="clear"></div>
+					</div>
+					<div class="form-group pl-5 pr-5">
+						<button class="btn btn-success btn-md btn-block">Submit!</button>
+					</div>
+				</form>
+			</div>
+				
+			<br>
+		<a class="btn btn-secondary btn-sm" href="/campgrounds">Back</a>
+		</div>
+		
+	</div>
+</div>
+
+
+<%- include("../partials/footer") %>
