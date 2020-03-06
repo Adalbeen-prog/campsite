@@ -23,7 +23,7 @@ const commentRoutes 	= require('./routes/comments'),
 
 
 // delete all DB and seed 4 new campgrounds with 1 sample comment
-// seedDB();
+seedDB();
 
 
 mongoose.connect(`mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@cluster0-shmga.azure.mongodb.net/test?retryWrites=true&w=majority`, { 
@@ -39,7 +39,7 @@ app.use(flash()); // Flash messages
 
 // PASSPORT CONFIGURATION
 app.use(require('express-session')({
-	secret: 'Pigina je nejvic cute Muflon',
+	secret: process.env.SECRET,
 	resave: false,
 	saveUninitialized: false
 }));
@@ -65,6 +65,6 @@ app.get("*", function(req, res){
 	res.redirect('/campgrounds')
 })
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, process.env.IP, () => {
 	console.log("Listening on port 3000");
 });
