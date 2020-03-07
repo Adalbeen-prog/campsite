@@ -4,21 +4,21 @@
         <h1 class="campgroundName display-4">
             <%= campground.name %>
         </h1>
-        <p class="campgroundLead" style="">
+        <p class="campgroundLead">
             <%= campground.info %>
         </p>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-3">
+<div class="row ml-0">
+    <div class="col-md-3 p-0 text-center">
         <div id="campgroundsMenu" class="list-group">
             <a class="ml-1 mr-1 mb-3 btn btn-md btn-outline-secondary" href="/campgrounds/">Back</a>
             <a class="list-group-item list-group-item-action" href="#list-item-1">Description</a>
             <a class="list-group-item list-group-item-action" href="#list-item-2">Gallery</a>
             <a class="list-group-item list-group-item-action" href="#list-item-3">Reviews</a>
-            <div id="map">
-
+            <a class="list-group-item list-group-item-action d-block d-md-none" href="#list-item-4">Map</a>
+            <div id="mapDesktop"><div id="map"></div>  
             </div>
         </div>
 
@@ -74,6 +74,11 @@
             </div>
             <% }%>
             <hr>
+            <div id="list-item-4" class="d-block d-md-none text-center">
+                <h1 class="display-4">Map</h1>
+                <div id="mapPhone"></div>
+                <hr>
+            </div>
             <!-- 	GALLERY		 -->
             <div id="list-item-2" class="gallery">
                 <!-- 	Show button only if you are owner		 -->
@@ -81,7 +86,7 @@
                 <a class="btn btn-outline-secondary pull-right"
                     href="/campgrounds/<%= campground.id %>/gallery/new">Upload</a>
                 <% } %>
-                <h2 class="text-center">
+                <h2 class="display-4 text-center">
                     Gallery
                     </h1>
                     <div class="masonry">
@@ -89,7 +94,7 @@
                         <div class="item">
                             <a href="<%= img %>" data-toggle="lightbox" data-gallery="example-gallery"
                                 data-type="image">
-                                <img src="<%= img %>" class="img-fluid" width="250px" height="250px">
+                                <img src="<%= img %>" class="img-fluid" >
                             </a>
                         </div>
                         <% }) %>
@@ -148,9 +153,10 @@
         center: [<%= campground.location.lng %>, <%= campground.location.lat %>], // starting position [lng, lat]
         zoom: 12 // starting zoom
     });
+    
     var marker = new mapboxgl.Marker() // initialize a new marker
         .setLngLat([<%= campground.location.lng %>, <%= campground.location.lat %>]) // Marker [lng, lat] coordinates
-        .addTo(map); // Add the marker to the map
+        .addTo(map); // Add the marker to the map   
 </script>
 
 <%- include("../partials/footer") %>

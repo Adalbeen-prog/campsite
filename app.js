@@ -19,8 +19,8 @@ const commentRoutes 	= require('./routes/comments'),
 	  authRoutes 		= require('./routes/auth');
 
 
-// delete all DB and seed 4 new campgrounds with 1 sample comment
-seedDB();
+// delete all DB and seed 4 new campgrounds with 1 sample review
+// seedDB();
 
 
 mongoose.connect(`mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@cluster0-shmga.azure.mongodb.net/test?retryWrites=true&w=majority`, { 
@@ -63,5 +63,5 @@ app.get("*", function(req, res){
 })
 
 app.listen(process.env.PORT, process.env.IP, () => {
-	console.log("Listening on port 3000");
+	console.log("Listening on "+process.env.IP+process.env.PORT);
 });

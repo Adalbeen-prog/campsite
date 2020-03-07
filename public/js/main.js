@@ -25,7 +25,19 @@ $('#location').change(function() {
 	});
 });
 
+resizeMap() 
+$(window).resize(function() {
+	resizeMap() 
+});
 
+
+function resizeMap() {
+	if(screen.width < 768) {
+		$("#map").appendTo("#mapPhone");
+	} else {
+		$("#map").appendTo("#mapDesktop");
+	}
+}
 function checkStars(foundCampground){
 	var totalStars = 0;
 	foundCampground.comments.forEach(function(comment){
